@@ -6,6 +6,7 @@ import morgan from "morgan"
 import bcrypt from "bcrypt"
 import session from "express-session"
 import indexRouter from "./routes/index.js"
+import bodyParser from "body-parser"
 
 
 const app = express()
@@ -16,6 +17,7 @@ nunjucks.configure("views", {
   express: app,
 })
 
+app.use(bodyParser.urlencoded({ extended: true }))
 app.use(express.static("public"))
 app.use(logger("dev"))
 app.use(session({
